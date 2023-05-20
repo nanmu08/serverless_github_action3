@@ -1,11 +1,6 @@
 name: Run Docker Image from Docker Hub
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'trigger/**'
   workflow_dispatch:
     inputs:
       ID:
@@ -24,7 +19,6 @@ jobs:
       INPUT_ID: ${{ github.event.inputs.ID }}
       INPUT_INVOKENAME: ${{ github.event.inputs.InvokeName }}
       USER_TOKEN: ${{ secrets.USER_TOKEN }}
-      CURRENT_REPO: ${{ github.repository }}
       PAYLOAD_REPO: ${{ vars.PAYLOAD_REPO }}
     steps:
     - name: Login to DockerHub
@@ -36,4 +30,4 @@ jobs:
     - name: Pull and run Docker image pass env
       run: |
         docker pull nanmu08/ghaction:api2
-        docker run -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e USER_TOKEN -e INPUT_ID -e INPUT_INVOKENAME -e CURRENT_REPO -e PAYLOAD_REPO nanmu08/ghaction:api2
+        docker run -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e USER_TOKEN -e INPUT_ID -e INPUT_INVOKENAME -e PAYLOAD_REPO nanmu08/ghaction:api2
