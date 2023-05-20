@@ -5,7 +5,7 @@ on:
     inputs:
       ID:
         description: 'ID'
-        required: true
+        required: false
       InvokeName:
         description: 'FunctionInvoke'
         required: true
